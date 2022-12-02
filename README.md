@@ -13,3 +13,7 @@ Create and initialize the application
 
 ### 29-11-2022:
 Turn out jQuery might be unnecessary as React has all the tools already.
+
+### 02-12-2022: 
+- Update color palette
+- Create navbar
