@@ -7,25 +7,26 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function Header() {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar expand="md">
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+        <Navbar.Brand href="#home" className={`${style.brandName} fs-1`}>Restaurant</Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbar-nav" />
+        <Navbar.Collapse id="navbar-nav">
+          <Nav className="ms-auto">
             <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+            <NavDropdown title="Menu" id="menu-dropdown">
+              <NavDropdown.Item href="#action/3.1">Food A</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
-                Another action
+              Food B
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.3">Food C</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.4">
-                Separated link
+              Food D
               </NavDropdown.Item>
             </NavDropdown>
+            {/* Delete this after */}
+            <Nav.Link href="#cart">View card</Nav.Link>
+            {/* Cart here */}
           </Nav>
         </Navbar.Collapse>
       </Container>
