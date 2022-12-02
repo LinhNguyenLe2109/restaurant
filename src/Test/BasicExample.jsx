@@ -1,22 +1,15 @@
 import Alert from 'react-bootstrap/Alert';
-
+import ThemeProvider from 'react-bootstrap/ThemeProvider';
+import Button from 'react-bootstrap/Button';
 function BasicExample() {
   return (
     <>
-      {[
-        'primary',
-        'secondary',
-        'success',
-        'danger',
-        'warning',
-        'info',
-        'light',
-        'dark',
-      ].map((variant) => (
-        <Alert key={variant} variant={variant}>
-          This is a {variant} alert—check it out!
-        </Alert>
-      ))}
+      <ThemeProvider prefixes={{ btn: 'my-btn' }}>
+        <Button variant="primary">My Button</Button>
+      </ThemeProvider>{' '}
+      <Button bsPrefix="super-btn" variant="primary">
+        Super button
+      </Button>
     </>
   );
 }
