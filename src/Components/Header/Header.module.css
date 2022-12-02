@@ -1,5 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Nerko+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nerko+One&display=swap");
 
-.brandName{
-    font-family: 'Nerko One', cursive;
+.nav {
+  background: rgb(255, 113, 91);
+}
+
+.text-color {
+  color: black;
+  text-decoration: none;
+}
+
+.text-color:hover {
+    color: rgb(76,91,92);
+  }
+
+
+.brandName {
+  font-family: "Nerko One", cursive;
 }

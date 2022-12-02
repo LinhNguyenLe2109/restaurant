@@ -4,16 +4,17 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link } from "react-scroll";
 
 function Header() {
   return (
-    <Navbar expand="md">
+    <Navbar expand="md" className={`${style.nav}`}>
       <Container>
-        <Navbar.Brand href="#home" className={`${style.brandName} fs-1`}>Restaurant</Navbar.Brand>
+        <Navbar.Brand href="#home" className={`${style.brandName}  fs-1`}>Restaurant</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#home" >Home</Nav.Link>
             <NavDropdown title="Menu" id="menu-dropdown">
               <NavDropdown.Item href="#action/3.1">Food A</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
