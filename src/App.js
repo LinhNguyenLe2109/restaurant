@@ -2,12 +2,15 @@
 import './App.css';
 import BasicExample from './Test/BasicExample';
 import Header from './Components/Header/Header'
+import React from 'react';
+import Introduction from './Components/Body/Introduction';
 
 function App() {
   return (
-    <div className="App">
+    <React.StrictMode>
       <Header/>
-    </div>
+      <Introduction/>
+    </React.StrictMode>
   );
 }
 

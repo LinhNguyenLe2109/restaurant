@@ -17,3 +17,7 @@ Turn out jQuery might be unnecessary as React has all the tools already.
 ### 02-12-2022: 
 - Update color palette
 - Create navbar
+
+### 09-12-2022: 
+- Create the introduction
+- Create template for categories and items
