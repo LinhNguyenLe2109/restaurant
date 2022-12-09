@@ -20,4 +20,5 @@ Turn out jQuery might be unnecessary as React has all the tools already.
 
 ### 09-12-2022: 
 - Create the introduction
-- Create template for categories and items
+- Create template prototype for categories and items. Still need a lot of upgrades tho :P
+- To use spoonacular api key, use apiKey as ur query and add the key value
