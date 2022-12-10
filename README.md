@@ -22,3 +22,8 @@ Turn out jQuery might be unnecessary as React has all the tools already.
 - Create the introduction
 - Create template prototype for categories and items. Still need a lot of upgrades tho :P
 - To use spoonacular api key, use apiKey as ur query and add the key value
+
+### 10-12-2022:
+- Finish yesterday work
+- Need more research on useCallBack
+- Installed html-react-parser to convert a string to HTML, I wonder if there is a manual way to do this cuz I don't wanna install to many libraries just to use one function .-.

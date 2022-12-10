@@ -4,6 +4,7 @@ import { Container, Card, Button } from 'react-bootstrap'
 import styles from './FoodList.module.css'
 import $ from 'jquery';
 import { useCallback } from 'react';
+import parse from 'html-react-parser'
 
 function FoodList() {
     const [data, setData]= useState([]);
@@ -19,29 +20,60 @@ function FoodList() {
                     // query: 'Bun',
                     number: 10
                 },
-                success: successfulFetch,
+                success: successfulFetchData,
+                dataType: 'json',
+            })
+    }, [])
+    const fetchInformation = useCallback((id)=>{
+        // let response = $.get("https://api.spoonacular.com/recipes/complexSearch", {apiKey: API_KEY, })
+        $.ajax({
+                url: `https://api.spoonacular.com/recipes/${id}/information`, 
+                data: {
+                    apiKey: API_KEY, 
+                    includeNutrition: false
+                },
+                success: successfulFetchInformation,
                 dataType: 'json',
             })
     }, [])
     useEffect(()=>{
         fetchData();
     }, [fetchData]);
-    function successfulFetch(retrievedData){
-        // console.log(retrievedData);
-        setData(retrievedData.results[0]);
+
+    //function run after successfully get a list of data
+    function successfulFetchData(retrievedData){
+        console.log(retrievedData.results[0]);
+        let test =fetchInformation(retrievedData.results[0].id) ;
+    }
+
+    //function returns a detailed information of a food
+    function successfulFetchInformation(retrievedData){
+        console.log(retrievedData);
+        let test = {
+            id: retrievedData.id,
+            title: retrievedData.title,
+            image: retrievedData.image,
+            // price divided by 100 to get actual price
+            pricePerServing: retrievedData.pricePerServing,
+            diets: retrievedData.diets,
+            summary: retrievedData.summary,
+            // multiply price with number of saving to get real price
+            servings: retrievedData.servings
+        }
+        setData(test);
+        // let test =fetchInformation(retrievedData.results[0].id) ;
+        // setData(test);
     }
     const list = <div className={`${styles.list}`}>
                     {/* list goes here */}
                     {/* <p>{data.title}</p> */}
-                    <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src="holder.js/100px180" />
+                    <Card>
+                    <Card.Img variant="top" src={data.image} />
                     <Card.Body>
-                        <Card.Title>Card Title</Card.Title>
-                        <Card.Text>
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
-                        </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
+                        <Card.Title>{data.title}</Card.Title>
+                        <Card.Text>{data.price}</Card.Text>
+                        <Card.Text>{parse(data.summary)}</Card.Text>
+                        <Button variant="primary">Add to cart</Button>
                     </Card.Body>
                     </Card>
                 </div>
