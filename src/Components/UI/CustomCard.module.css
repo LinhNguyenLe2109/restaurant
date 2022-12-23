@@ -1,0 +1,13 @@
+.button{
+    background-color: rgb(87,0,0)!important;
+    border-color: rgb(126, 1, 1)!important;
+}
+
+.button:active, .button:hover, .button:focus{
+    background-color: rgb(126, 1, 1)!important;
+    
+}
+
+.price{
+    color: rgb(40,0,0);
+}

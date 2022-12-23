@@ -27,3 +27,7 @@ Turn out jQuery might be unnecessary as React has all the tools already.
 - Finish yesterday work
 - Need more research on useCallBack
 - Installed html-react-parser to convert a string to HTML, I wonder if there is a manual way to do this cuz I don't wanna install to many libraries just to use one function .-.
+
+### 22-12-2022:
+- Comment out the summary, it's longer than we expected
+- 

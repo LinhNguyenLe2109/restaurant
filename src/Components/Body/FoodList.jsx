@@ -5,13 +5,13 @@ import styles from './FoodList.module.css'
 import $ from 'jquery';
 import { useCallback } from 'react';
 import parse from 'html-react-parser'
+import CustomCard from '../UI/CustomCard';
 
 function FoodList() {
-    const [data, setData]= useState([]);
+    const [data, setData]= useState({});
     const [isLoading, setIsLoading] = useState(false);
     const API_KEY = "0ecccc5ef7754191ab8b6bd26d0dd5da";
-    const fetchData = useCallback(()=>{
-        // let response = $.get("https://api.spoonacular.com/recipes/complexSearch", {apiKey: API_KEY, })
+    const fetchData = useCallback(async ()=>{
         $.ajax({
                 url: "https://api.spoonacular.com/recipes/complexSearch", 
                 data: {
@@ -24,8 +24,7 @@ function FoodList() {
                 dataType: 'json',
             })
     }, [])
-    const fetchInformation = useCallback((id)=>{
-        // let response = $.get("https://api.spoonacular.com/recipes/complexSearch", {apiKey: API_KEY, })
+    const fetchInformation = useCallback(async (id)=>{
         $.ajax({
                 url: `https://api.spoonacular.com/recipes/${id}/information`, 
                 data: {
@@ -64,18 +63,13 @@ function FoodList() {
         // let test =fetchInformation(retrievedData.results[0].id) ;
         // setData(test);
     }
+    const convertSummary = (text) =>{
+        let parseText
+    }
     const list = <div className={`${styles.list}`}>
                     {/* list goes here */}
                     {/* <p>{data.title}</p> */}
-                    <Card>
-                    <Card.Img variant="top" src={data.image} />
-                    <Card.Body>
-                        <Card.Title>{data.title}</Card.Title>
-                        <Card.Text>{data.price}</Card.Text>
-                        <Card.Text>{parse(data.summary)}</Card.Text>
-                        <Button variant="primary">Add to cart</Button>
-                    </Card.Body>
-                    </Card>
+                    <CustomCard data = {data}></CustomCard>
                 </div>
   return (
     <Container className='pt-5'>
