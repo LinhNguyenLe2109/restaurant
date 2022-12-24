@@ -30,4 +30,8 @@ Turn out jQuery might be unnecessary as React has all the tools already.
 
 ### 22-12-2022:
 - Comment out the summary, it's longer than we expected
-- 
+- Work on card component
+
+### 24-12-2022:
+- Upgrade css
+- Finish list
