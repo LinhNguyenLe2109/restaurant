@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Nerko+One&display=swap");
+@import '../../global.css';
 
 .nav {
-  background: rgb(255, 113, 91);
+  background: var(--bg-color);
 }
 
 .text-color {
-  color: black;
+  color: var(--text-color);
   text-decoration: none;
 }
 
