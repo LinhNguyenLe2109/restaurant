@@ -34,4 +34,4 @@ Turn out jQuery might be unnecessary as React has all the tools already.
 
 ### 24-12-2022:
 - Upgrade css
-- Finish list
+- Finish list component
