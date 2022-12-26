@@ -5,14 +5,16 @@ import styles from './FoodList.module.css'
 import $ from 'jquery';
 import { useCallback } from 'react';
 import CustomCard from '../UI/CustomCard';
+import { useRef } from 'react';
 
 function FoodList() {
+    const firstTimeRun = useRef(false);
     const [data, setData]= useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const API_KEY = "0ecccc5ef7754191ab8b6bd26d0dd5da";
     //fetch a list of dishes
     const fetchData = useCallback(async ()=>{
-        $.ajax({
+        await $.ajax({
                 url: "https://api.spoonacular.com/recipes/complexSearch", 
                 data: {
                     apiKey: API_KEY, 
@@ -23,11 +25,11 @@ function FoodList() {
                 success: successfulFetchData,
                 dataType: 'json',
             })
-    }, [])
+    })
 
     //fetch one recipe's detail information
     const fetchOneRecipeInformation = useCallback(async (id)=>{
-        $.ajax({
+        await $.ajax({
                 url: `https://api.spoonacular.com/recipes/${id}/information`, 
                 data: {
                     apiKey: API_KEY, 
@@ -36,17 +38,23 @@ function FoodList() {
                 success: successfulFetchInformation,
                 dataType: 'json',
             })
-    }, [])
+    })
     useEffect(()=>{
-        fetchData();
-    }, [fetchData]);
+        if(!firstTimeRun.current){
+            let test;
+            fetchData().then(data => test = data);
+            // fetchData();
+            console.log(test);
+            firstTimeRun.current = true;
+        }
+    });
 
     //function run after successfully get a list of data
-    function successfulFetchData(retrievedData){
+    async function successfulFetchData(retrievedData){
         // console.log(retrievedData.results[0]);
-        let dishes =retrievedData.results.map(result => fetchOneRecipeInformation(result.id));
+        let dishes =await retrievedData.results.map(async result => await fetchOneRecipeInformation(result.id));
         console.log(dishes);
-        setData(dishes);
+        // setData(dishes);
     }
 
     //function returns a detailed information of a food
@@ -60,13 +68,13 @@ function FoodList() {
             diets: retrievedData.diets,
             summary: retrievedData.summary,
         }
-        console.log(returnObject);
+        // console.log(returnObject);
         return returnObject;
     }
 
     const list = <div className={`${styles.list}`}>
                     {/* list goes here */}
-                    {data.map(dish => <CustomCard data = {dish}></CustomCard>)}
+                    {data.map(dish => <CustomCard key ={dish.id} data = {dish}></CustomCard>)}
                     
                 </div>
   return (
