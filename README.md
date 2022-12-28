@@ -38,3 +38,7 @@ Turn out jQuery might be unnecessary as React has all the tools already.
 
 ### 25-12-2022:
 - Fixing async functions
+
+### 28-12-2022:
+- Successfully fetch data from Spoonacular
+- Working on display

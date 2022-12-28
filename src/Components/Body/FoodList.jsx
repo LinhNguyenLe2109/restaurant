@@ -14,7 +14,7 @@ function FoodList() {
     const API_KEY = "0ecccc5ef7754191ab8b6bd26d0dd5da";
     //fetch a list of dishes
     const fetchData = useCallback(async ()=>{
-        await $.ajax({
+        const data = await $.ajax({
                 url: "https://api.spoonacular.com/recipes/complexSearch", 
                 data: {
                     apiKey: API_KEY, 
@@ -22,55 +22,47 @@ function FoodList() {
                     // query: 'Bun',
                     number: 2
                 },
-                success: successfulFetchData,
                 dataType: 'json',
-            })
+            });
+        let dishes = [];
+        for(let i = 0; i < data.results.length; i++){
+            await fetchOneRecipeInformation(data.results[i].id).then(info => dishes.push(info));
+        }
+        console.log(dishes);
+        setData(dishes);
     })
 
     //fetch one recipe's detail information
     const fetchOneRecipeInformation = useCallback(async (id)=>{
-        await $.ajax({
+        const data = await $.ajax({
                 url: `https://api.spoonacular.com/recipes/${id}/information`, 
                 data: {
                     apiKey: API_KEY, 
                     includeNutrition: false
                 },
-                success: successfulFetchInformation,
                 dataType: 'json',
             })
+        
+        const dishInfo = {
+            id: data.id,
+            title: data.title,
+            image: data.image,
+            // price divided by 100 to get actual price
+            pricePerServing: data.pricePerServing,
+            diets: data.diets,
+            summary: data.summary,
+        }
+        return dishInfo;
     })
     useEffect(()=>{
         if(!firstTimeRun.current){
-            let test;
-            fetchData().then(data => test = data);
+            // let test;
+            fetchData()//.then(data => test = data);
             // fetchData();
-            console.log(test);
+            // console.log(test);
             firstTimeRun.current = true;
         }
     });
-
-    //function run after successfully get a list of data
-    async function successfulFetchData(retrievedData){
-        // console.log(retrievedData.results[0]);
-        let dishes =await retrievedData.results.map(async result => await fetchOneRecipeInformation(result.id));
-        console.log(dishes);
-        // setData(dishes);
-    }
-
-    //function returns a detailed information of a food
-    function successfulFetchInformation(retrievedData){
-        let returnObject = {
-            id: retrievedData.id,
-            title: retrievedData.title,
-            image: retrievedData.image,
-            // price divided by 100 to get actual price
-            pricePerServing: retrievedData.pricePerServing,
-            diets: retrievedData.diets,
-            summary: retrievedData.summary,
-        }
-        // console.log(returnObject);
-        return returnObject;
-    }
 
     const list = <div className={`${styles.list}`}>
                     {/* list goes here */}
