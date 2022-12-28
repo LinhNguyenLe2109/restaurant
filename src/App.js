@@ -4,14 +4,14 @@ import BasicExample from './Test/BasicExample';
 import Header from './Components/Header/Header'
 import React from 'react';
 import Introduction from './Components/Body/Introduction';
-import FoodList from './Components/Body/FoodList';
+import FoodMenu from './Components/Body/FoodMenu';
 
 function App() {
   return (
     <React.StrictMode>
       <Header/>
       <Introduction/>
-      <FoodList/>
+      <FoodMenu/>
     </React.StrictMode>
   );
 }

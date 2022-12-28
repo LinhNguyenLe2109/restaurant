@@ -1,11 +1,7 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
-import { Container, Card, Button } from 'react-bootstrap'
-import styles from './FoodList.module.css'
-import $ from 'jquery';
-import { useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from "react"; 
 import CustomCard from '../UI/CustomCard';
-import { useRef } from 'react';
+import $ from 'jquery';
+import styles from './FoodList.module.css'
 
 function FoodList() {
     const firstTimeRun = useRef(false);
@@ -28,7 +24,6 @@ function FoodList() {
         for(let i = 0; i < data.results.length; i++){
             await fetchOneRecipeInformation(data.results[i].id).then(info => dishes.push(info));
         }
-        console.log(dishes);
         setData(dishes);
     })
 
@@ -56,10 +51,7 @@ function FoodList() {
     })
     useEffect(()=>{
         if(!firstTimeRun.current){
-            // let test;
-            fetchData()//.then(data => test = data);
-            // fetchData();
-            // console.log(test);
+            fetchData()
             firstTimeRun.current = true;
         }
     });
@@ -70,16 +62,15 @@ function FoodList() {
                     
                 </div>
   return (
-    <Container className='pt-5'>
-        <Container fluid className={`${styles.container} py-3 px-4 mb-5 text-center`}>
-            <div className={`${styles.intro}`}>
-                <h2 className='fs-2'>Japanese Food</h2>
-                <p className='fs-5'>Have a taste of the noodles made from the finest Japanese cooks</p>
-            </div>
-            {!isLoading && list}
-            {isLoading && <p>I'm spinning</p>}
-        </Container>
-    </Container>
+    <React.Fragment>
+        <div className={`${styles.intro}`}>
+                    <h2 className='fs-2'>Japanese Food</h2>
+                    <p className='fs-5'>Have a taste of the noodles made from the finest Japanese cooks</p>
+        </div>
+        {!isLoading && list}
+        {isLoading && <p>I'm spinning</p>}
+    </React.Fragment>
+
   )
 }
 
