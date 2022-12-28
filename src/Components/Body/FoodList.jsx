@@ -3,20 +3,20 @@ import CustomCard from '../UI/CustomCard';
 import $ from 'jquery';
 import styles from './FoodList.module.css'
 
-function FoodList() {
+function FoodList(props) {
     const firstTimeRun = useRef(false);
     const [data, setData]= useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const API_KEY = "0ecccc5ef7754191ab8b6bd26d0dd5da";
     //fetch a list of dishes
-    const fetchData = useCallback(async ()=>{
+    const fetchData = useCallback(async (cuisineType)=>{
+        setIsLoading(true);
         const data = await $.ajax({
                 url: "https://api.spoonacular.com/recipes/complexSearch", 
                 data: {
                     apiKey: API_KEY, 
-                    cuisine: 'Japanese',
-                    // query: 'Bun',
-                    number: 2
+                    cuisine: cuisineType,
+                    number: 10
                 },
                 dataType: 'json',
             });
@@ -25,6 +25,7 @@ function FoodList() {
             await fetchOneRecipeInformation(data.results[i].id).then(info => dishes.push(info));
         }
         setData(dishes);
+        setIsLoading(false);
     })
 
     //fetch one recipe's detail information
@@ -51,12 +52,13 @@ function FoodList() {
     })
     useEffect(()=>{
         if(!firstTimeRun.current){
-            fetchData()
+            
+            fetchData(props.cuisine)
             firstTimeRun.current = true;
         }
     });
 
-    const list = <div className={`${styles.list}`}>
+    const list = <div className={`${styles.list} d-flex column-gap-3 row-gap-2 flex-wrap`}>
                     {/* list goes here */}
                     {data.map(dish => <CustomCard key ={dish.id} data = {dish}></CustomCard>)}
                     

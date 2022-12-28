@@ -8,7 +8,7 @@ function FoodMenu() {
   return (
     <Container className='pt-5'>
         <Container fluid className={`${styles.container} py-3 px-4 mb-5 text-center`}>
-            <FoodList></FoodList>
+            <FoodList cuisine = "Japanese"></FoodList>
         </Container>
     </Container>
   )
