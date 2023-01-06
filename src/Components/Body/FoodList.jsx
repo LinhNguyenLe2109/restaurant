@@ -58,19 +58,19 @@ function FoodList(props) {
         }
     });
 
-    const list = <div className={`${styles.list} d-flex column-gap-3 row-gap-2 flex-wrap`}>
+    const list = <div className={`${styles.list} d-flex flex-wrap justify-content-evenly`}>
                     {/* list goes here */}
-                    {data.map(dish => <CustomCard key ={dish.id} data = {dish}></CustomCard>)}
+                    {data.map(dish => <CustomCard key ={dish.id} className="mx-1 my-2" data = {dish}></CustomCard>)}
                     
                 </div>
   return (
     <React.Fragment>
         <div className={`${styles.intro}`}>
-                    <h2 className='fs-2'>Japanese Food</h2>
-                    <p className='fs-5'>Have a taste of the noodles made from the finest Japanese cooks</p>
+                    <h2 className='fs-2'>{props.foodCategory}</h2>
+                    <p className='fs-5'>{props.foodCatDesc}</p>
         </div>
         {!isLoading && list}
-        {isLoading && <p>I'm spinning</p>}
+        {isLoading && <p>The menu is loading</p>}
     </React.Fragment>
 
   )

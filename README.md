@@ -43,3 +43,9 @@ Turn out jQuery might be unnecessary as React has all the tools already.
 - Successfully fetch data from Spoonacular
 - Working on display
 - split up the FoodMenu module
+
+### 06-01-2023:
+- Populate the website
+- fix some styling
+- Adjust navbar
+- Need to finish the order logic

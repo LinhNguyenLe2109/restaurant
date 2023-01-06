@@ -5,7 +5,7 @@ import styles from "./CustomCard.module.css";
 function CustomCard(props) {
   let price = `$${(props.data.pricePerServing / 10).toFixed(2)}`
   return (
-    <Card className="col-3">
+    <Card className={`col-3 ${props.className}`}>
       <Card.Img variant="top" src={props.data.image} />
       <Card.Body>
         <Card.Title className="fs-4">{props.data.title}</Card.Title>
