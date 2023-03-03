@@ -18,3 +18,7 @@
 .brandName {
   font-family: "Nerko One", cursive;
 }
+
+.cartButton{
+  background-color: var(--third-color);
+}
