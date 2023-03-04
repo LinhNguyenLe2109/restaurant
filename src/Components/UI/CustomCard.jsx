@@ -1,9 +1,9 @@
 import React from "react";
-import parse from 'html-react-parser'
+import parse from "html-react-parser";
 import { Container, Card, Button } from "react-bootstrap";
 import styles from "./CustomCard.module.css";
 function CustomCard(props) {
-  let price = `$${(props.data.pricePerServing / 10).toFixed(2)}`
+  let price = `$${(props.data.pricePerServing / 10).toFixed(2)}`;
   return (
     <Card className={`col-3 ${props.className}`}>
       <Card.Img variant="top" src={props.data.image} />
@@ -15,7 +15,9 @@ function CustomCard(props) {
           fluid
           className={`d-flex justify-content-between align-items-center`}
         >
-          <Button className={styles.button}>Add to cart</Button>
+          <Button className={styles.button} onClick={() => props.addItem(props.data)}>
+            Add to cart
+          </Button>
           <Card.Text
             className={`${styles.price} d-inline-block 
               fs-5 fw-bold fst-italic`}

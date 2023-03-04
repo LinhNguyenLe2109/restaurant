@@ -3,7 +3,7 @@ import { Container, Card, Button } from "react-bootstrap";
 import FoodList from "./FoodList";
 import styles from "./FoodMenu.module.css";
 
-function FoodMenu() {
+function FoodMenu(props) {
   return (
     <Container className="pt-5">
       <Container
@@ -12,6 +12,7 @@ function FoodMenu() {
         className={`${styles.container} py-3 px-4 mb-5 text-center`}
       >
         <FoodList
+          addItem={props.addItem}
           foodCatDesc="Have a taste of the noodles made from the finest Japanese chiefs"
           foodCategory="Japanese food"
           cuisine="Japanese"

@@ -64,6 +64,7 @@ function FoodList(props) {
       {/* list goes here */}
       {data.map((dish) => (
         <CustomCard
+          addItem={props.addItem}
           key={dish.id}
           className="mx-1 my-2"
           data={dish}
