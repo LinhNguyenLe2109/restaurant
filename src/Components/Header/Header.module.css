@@ -20,5 +20,17 @@
 }
 
 .cartButton{
-  background-color: var(--third-color);
+  background-color: var(--third-color) !important;
+  font-weight: bold;
+}
+
+.cartButton:hover{
+  color: var(--secondary-color)!important;
+}
+
+.totalItem{
+  background-color: var(--forth-color);
+  color: white;
+  padding: 0.1rem 0.4rem;
+  border-radius: 50%;
 }

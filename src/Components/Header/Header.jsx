@@ -43,7 +43,8 @@ function Header(props) {
           type="button"
           onClick={props.showCart}
         >
-          <i className="fa-solid fa-cart-shopping me-1"></i>View card
+          <i className="fa-solid fa-cart-shopping me-1"></i>View card{" "}
+          <span className={style.totalItem}>{props.totalItem}</span>
         </Button>
       </Container>
     </Navbar>

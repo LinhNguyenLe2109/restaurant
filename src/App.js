@@ -20,7 +20,7 @@ function App() {
         for (const dish of curArray) {
           if (dish.id === itemDetails.id) {
             // if the dish is found in the order => update the total amount
-            newArray.push({ ...dish, amount: dish.amount++ });
+            newArray.push({ ...dish, amount: dish.amount+1 });
             found = 1;
           }
           // or just add into the new array
@@ -36,17 +36,19 @@ function App() {
   };
   // show modal
   const showCartHandler = () => {
-    console.log("hi")
     setCartIsShown(true);
   };
   // remove modal
   const hideCartHandler = () => {
     setCartIsShown(false);
   };
+  let totalItem = orderList.reduce((sum, item) => sum +item.amount, 0)
   return (
     <React.StrictMode>
-      {cartIsShown && <Cart closeCart = {hideCartHandler} />}
-      <Header orderList={orderList} showCart={showCartHandler} />
+      {cartIsShown && (
+        <Cart orderList={orderList} closeCart={hideCartHandler} />
+      )}
+      <Header totalItem={totalItem} showCart={showCartHandler} />
       <Introduction />
       <FoodMenu addItem={addAnItem} />
     </React.StrictMode>
