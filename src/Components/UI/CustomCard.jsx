@@ -1,5 +1,4 @@
 import React from "react";
-import parse from "html-react-parser";
 import { Container, Card, Button } from "react-bootstrap";
 import styles from "./CustomCard.module.css";
 function CustomCard(props) {

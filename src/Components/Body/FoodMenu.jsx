@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Card, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import FoodList from "./FoodList";
 import styles from "./FoodMenu.module.css";
 
