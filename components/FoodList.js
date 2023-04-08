@@ -2,19 +2,21 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import CustomCard from "./CustomCard";
 import $ from "jquery";
 import styles from "../styles/FoodList.module.css";
+import { Spinner } from "react-bootstrap";
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 function FoodList(props) {
   const firstTimeRun = useRef(false);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const API_KEY = process.env.API_KEY;
   //fetch a list of dishes
   const fetchData = useCallback(async (cuisineType) => {
     setIsLoading(true);
     const data = await $.ajax({
       url: "https://api.spoonacular.com/recipes/complexSearch",
       data: {
-        apiKey: API_KEY,
+        apiKey: process.env.NEXT_PUBLIC_API_KEY,
         cuisine: cuisineType,
         number: 10,
       },
@@ -35,7 +37,7 @@ function FoodList(props) {
     const data = await $.ajax({
       url: `https://api.spoonacular.com/recipes/${id}/information`,
       data: {
-        apiKey: API_KEY,
+        apiKey: process.env.NEXT_PUBLIC_API_KEY,
         includeNutrition: false,
       },
       dataType: "json",
@@ -72,6 +74,13 @@ function FoodList(props) {
       ))}
     </div>
   );
+
+  const loadingContent= (<div>
+    <Spinner animation="border" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>
+    <p>The menu is loading</p>
+  </div>)
   return (
     <React.Fragment>
       <div className={`${styles.intro}`}>
@@ -79,7 +88,7 @@ function FoodList(props) {
         <p className="fs-5">{props.foodCatDesc}</p>
       </div>
       {!isLoading && list}
-      {isLoading && <p>The menu is loading</p>}
+      {isLoading && loadingContent}
     </React.Fragment>
   );
 }

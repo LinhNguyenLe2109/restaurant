@@ -1,6 +1,7 @@
 .container{
-    background-color: rgb(255,113,91);
-    border: 10px solid rgba(249,203,64);
+    background-color: var(--bg-color);
+    border: 10px solid var(--secondary-color);
+    color: var(--text-color);
     border-radius: 2rem;
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px,
      rgba(0, 0, 0, 0.09) 0px 4px 2px, 
