@@ -8,6 +8,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 // Prevent fontawesome from adding its CSS since we did it manually above:
 import { config } from "@fortawesome/fontawesome-svg-core";
 import Introduction from "@/components/Introduction";
+import FoodMenu from "@/components/FoodMenu";
 config.autoAddCss = false; /* eslint-disable import/first */
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,6 +25,7 @@ export default function Home() {
       <main>
         <React.Fragment>
           <Introduction/>
+          <FoodMenu/>
         </React.Fragment>
       </main>
     </React.Fragment>

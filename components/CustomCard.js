@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Card, Button } from "react-bootstrap";
-import styles from "./CustomCard.module.css";
+import styles from "../styles/CustomCard.module.css";
 function CustomCard(props) {
   let price = `$${(props.data.pricePerServing / 10).toFixed(2)}`;
   return (

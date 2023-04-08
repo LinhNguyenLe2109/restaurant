@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import FoodList from "./FoodList";
-import styles from "./FoodMenu.module.css";
+import styles from "../styles/FoodMenu.module.css";
 
 function FoodMenu(props) {
   return (

@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import CustomCard from "../UI/CustomCard";
+import CustomCard from "./CustomCard";
 import $ from "jquery";
-import styles from "./FoodList.module.css";
+import styles from "../styles/FoodList.module.css";
 
 function FoodList(props) {
   const firstTimeRun = useRef(false);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const API_KEY = "0ecccc5ef7754191ab8b6bd26d0dd5da";
+  const API_KEY = process.env.API_KEY;
   //fetch a list of dishes
   const fetchData = useCallback(async (cuisineType) => {
     setIsLoading(true);
