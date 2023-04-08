@@ -1,0 +1,15 @@
+.mainNav {
+  background-color: #780116;
+}
+
+.cartButton {
+  background-color: #f7b538;
+}
+
+.totalItem {
+  background-color: #db7c26;
+  color: white;
+  padding: 0.1rem 0.4rem;
+  border-radius: 50%;
+  font-weight: bold;
+}

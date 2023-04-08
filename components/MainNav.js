@@ -1,15 +1,20 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { NavDropdown } from "react-bootstrap";
+import {
+  NavDropdown,
+  Form,
+  Button,
+  Nav,
+  Navbar,
+  Container,
+} from "react-bootstrap";
 import { useAtom } from "jotai";
 import { searchHistoryAtom } from "@/store";
 import { useState } from "react";
+import style from "../styles/MainNav.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse, faBowlFood, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 function MainNav(props) {
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
@@ -26,15 +31,24 @@ function MainNav(props) {
       router.push(`/artwork?${queryString}`);
     }
   };
+
+  let menuTitle = (
+    <>
+      <FontAwesomeIcon icon={faBowlFood} /> Menu
+    </>
+  );
   return (
     <React.Fragment>
       <Navbar
         expanded={isExpanded}
         expand="lg"
-        className="fixed-top navbar-dark bg-dark"
+        // className="fixed-top navbar-dark bg-dark"
+        className={`fixed-top ${style.mainNav} navbar-dark py-4`}
       >
         <Container>
-          <Navbar.Brand>Linh Nguyen Le</Navbar.Brand>
+          <Navbar.Brand className="fs-3 fw-bold" href="/">
+            NeoFood
+          </Navbar.Brand>
           <Navbar.Toggle
             onClick={() => setIsExpanded((expand) => !expand)}
             aria-controls="basic-navbar-nav"
@@ -42,16 +56,36 @@ function MainNav(props) {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Link legacyBehavior passHref href="/">
-                <Nav.Link active={router.pathname === "/"} onClick={() => setIsExpanded(false)}>Home</Nav.Link>
-              </Link>
-              <Link legacyBehavior passHref href="/search">
-                <Nav.Link active={router.pathname === "/search"} onClick={() => setIsExpanded(false)}>
-                  Advanced Search
+                <Nav.Link
+                  active={router.pathname === "/"}
+                  onClick={() => setIsExpanded(false)}
+                >
+                  <FontAwesomeIcon icon={faHouse} className="me-1" />
+                  Home
                 </Nav.Link>
               </Link>
-            </Nav>
-            &nbsp;
-            <Form onSubmit={(e) => handleSubmit(e)} className="d-flex">
+              <NavDropdown
+                onClick={() => setIsExpanded(false)}
+                title={menuTitle}
+                id="basic-nav-dropdown"
+              >
+                <Link legacyBehavior passHref href="/favourites">
+                  <NavDropdown.Item active={router.pathname === "/favourites"}>
+                    Japanese Food
+                  </NavDropdown.Item>
+                </Link>
+                <Link legacyBehavior passHref href="/history">
+                  <NavDropdown.Item active={router.pathname === "/history"}>
+                    Vietnamese Food
+                  </NavDropdown.Item>
+                </Link>
+                <Link legacyBehavior passHref href="/history">
+                  <NavDropdown.Item active={router.pathname === "/history"}>
+                    Korean Food
+                  </NavDropdown.Item>
+                </Link>
+              </NavDropdown>
+              <Form onSubmit={(e) => handleSubmit(e)} className="d-flex">
               <Form.Control
                 type="search"
                 placeholder="Search"
@@ -63,7 +97,21 @@ function MainNav(props) {
                 Search
               </Button>
             </Form>
+            </Nav>
             &nbsp;
+            <Button
+              href="#cart"
+              className={`${style.cartButton} btn btn-outline-dark mt-3 mt-lg-0`}
+              type="button"
+              onClick={props.showCart}
+            >
+              <FontAwesomeIcon icon={faCartShopping} className="me-1" />View cart{" "}
+              <span className={style.totalItem}>0</span>
+            </Button>
+            
+            
+            {/* Do this later */}
+            {/* &nbsp;
             <Nav>
               <NavDropdown
                 onClick={() => setIsExpanded(false)}
@@ -71,13 +119,17 @@ function MainNav(props) {
                 id="basic-nav-dropdown"
               >
                 <Link legacyBehavior passHref href="/favourites">
-                  <NavDropdown.Item  active={router.pathname === "/favourites"}>Favourites</NavDropdown.Item>
+                  <NavDropdown.Item active={router.pathname === "/favourites"}>
+                    Favourites
+                  </NavDropdown.Item>
                 </Link>
                 <Link legacyBehavior passHref href="/history">
-                  <NavDropdown.Item  active={router.pathname === "/history"}>Search History</NavDropdown.Item>
+                  <NavDropdown.Item active={router.pathname === "/history"}>
+                    Search History
+                  </NavDropdown.Item>
                 </Link>
               </NavDropdown>
-            </Nav>
+            </Nav> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>
