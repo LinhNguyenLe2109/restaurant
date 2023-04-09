@@ -14,6 +14,7 @@ config.autoAddCss = false; /* eslint-disable import/first */
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  
   return (
     <React.Fragment>
       <Head>

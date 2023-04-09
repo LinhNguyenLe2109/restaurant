@@ -1,10 +1,14 @@
+.cardStyle{
+    background-color: var(--secondary-color);
+}
+
 .button{
-    background-color: var(--secondary-color)!important;
-    border-color: rgb(126, 1, 1)!important;
+    background-color: var(--third-color);
+    border-color: var(--forth-color);
 }
 
 .button:active, .button:hover, .button:focus{
-    background-color: var(--secondary-color)!important;
+    background-color: var(--forth-color)!important;
     
 }
 

@@ -12,7 +12,6 @@ function FoodMenu(props) {
         className={`${styles.container} py-3 px-4 mb-5 text-center`}
       >
         <FoodList
-          addItem={props.addItem}
           foodCatDesc="Have a taste of the noodles made from the finest Japanese chiefs"
           foodCategory="Japanese food"
           cuisine="Japanese"

@@ -10,33 +10,40 @@ import {
   Container,
 } from "react-bootstrap";
 import { useAtom } from "jotai";
-import { searchHistoryAtom } from "@/store";
 import { useState } from "react";
 import style from "../styles/MainNav.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faBowlFood, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHouse,
+  faBowlFood,
+  faCartShopping,
+} from "@fortawesome/free-solid-svg-icons";
+import { orderListAtom, cartIsShownAtom } from "@/store";
 
 function MainNav(props) {
-  const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
   const [isExpanded, setIsExpanded] = useState(false);
-
+  const [orderList, setOrderList] = useAtom(orderListAtom);
+  const [cartIsShown, setCartIsShown] = useAtom(cartIsShownAtom);
   const router = useRouter();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setIsExpanded(false);
-    const queryString = `title=true&q=${event.target?.search?.value}`;
-    setSearchHistory((current) => [...current, queryString]);
-    if (event.target?.search?.value) {
-      router.push(`/artwork?${queryString}`);
-    }
   };
+
+  
+    // show modal
+    const showCartHandler = () => {
+      setCartIsShown(true);
+    };
 
   let menuTitle = (
     <>
       <FontAwesomeIcon icon={faBowlFood} /> Menu
     </>
   );
+
+  let totalItem = orderList.reduce((sum, item) => sum + item.amount, 0);
   return (
     <React.Fragment>
       <Navbar
@@ -86,30 +93,28 @@ function MainNav(props) {
                 </Link>
               </NavDropdown>
               <Form onSubmit={(e) => handleSubmit(e)} className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-                name="search"
-              />
-              <Button type="submit" variant="outline-success">
-                Search
-              </Button>
-            </Form>
+                <Form.Control
+                  type="search"
+                  placeholder="Search"
+                  className="me-2"
+                  aria-label="Search"
+                  name="search"
+                />
+                <Button type="submit" variant="outline-success">
+                  Search
+                </Button>
+              </Form>
             </Nav>
             &nbsp;
             <Button
               href="#cart"
               className={`${style.cartButton} btn btn-outline-dark mt-3 mt-lg-0`}
               type="button"
-              onClick={props.showCart}
+              onClick={showCartHandler}
             >
-              <FontAwesomeIcon icon={faCartShopping} className="me-1" />View cart{" "}
-              <span className={style.totalItem}>0</span>
+              <FontAwesomeIcon icon={faCartShopping} className="me-1" />
+              View cart <span className={style.totalItem}>{totalItem}</span>
             </Button>
-            
-            
             {/* Do this later */}
             {/* &nbsp;
             <Nav>
