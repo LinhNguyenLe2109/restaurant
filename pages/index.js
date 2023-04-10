@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
-import { Row, Col, Image } from "react-bootstrap";
+import { Row, Col, Image, Container } from "react-bootstrap";
 import React from "react";
-
+import CuisineList from "@/components/CuisineList";
 // prevent font awesome icon from being extremely large
 import "@fortawesome/fontawesome-svg-core/styles.css";
 // Prevent fontawesome from adding its CSS since we did it manually above:
@@ -26,7 +26,8 @@ export default function Home() {
       <main>
         <React.Fragment>
           <Introduction/>
-          <FoodMenu/>
+          <div className="mt-5"></div>
+          <CuisineList/>
         </React.Fragment>
       </main>
     </React.Fragment>

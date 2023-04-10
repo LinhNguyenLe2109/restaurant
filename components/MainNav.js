@@ -71,7 +71,6 @@ function MainNav(props) {
                 </Nav.Link>
               </Link>
               <NavDropdown
-                onClick={() => setIsExpanded(false)}
                 title={menuTitle}
                 id="basic-nav-dropdown"
               >

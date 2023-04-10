@@ -1,0 +1,8 @@
+.container {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.bulletClass {
+  background-color: white !important;
+}
