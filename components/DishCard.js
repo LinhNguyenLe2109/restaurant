@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Card, Button } from "react-bootstrap";
-import styles from "../styles/CustomCard.module.css";
+import styles from "../styles/DishCard.module.css";
 import { orderListAtom } from "@/store";
 import { useAtom } from "jotai";
 function CustomCard(props) {

@@ -31,11 +31,10 @@ function MainNav(props) {
     setIsExpanded(false);
   };
 
-  
-    // show modal
-    const showCartHandler = () => {
-      setCartIsShown(true);
-    };
+  // show modal
+  const showCartHandler = () => {
+    setCartIsShown(true);
+  };
 
   let menuTitle = (
     <>
@@ -76,18 +75,18 @@ function MainNav(props) {
                 title={menuTitle}
                 id="basic-nav-dropdown"
               >
-                <Link legacyBehavior passHref href="/favourites">
-                  <NavDropdown.Item active={router.pathname === "/favourites"}>
+                <Link legacyBehavior passHref href="/category/Japanese">
+                  <NavDropdown.Item active={router.pathname === "//category/Japanese"}>
                     Japanese Food
                   </NavDropdown.Item>
                 </Link>
-                <Link legacyBehavior passHref href="/history">
-                  <NavDropdown.Item active={router.pathname === "/history"}>
+                <Link legacyBehavior passHref href="/category/Vietnamese">
+                  <NavDropdown.Item active={router.pathname === "/category/Vietnamese"}>
                     Vietnamese Food
                   </NavDropdown.Item>
                 </Link>
-                <Link legacyBehavior passHref href="/history">
-                  <NavDropdown.Item active={router.pathname === "/history"}>
+                <Link legacyBehavior passHref href="/category/Korean">
+                  <NavDropdown.Item active={router.pathname === "/category/Korean"}>
                     Korean Food
                   </NavDropdown.Item>
                 </Link>
