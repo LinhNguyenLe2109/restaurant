@@ -3,68 +3,59 @@ import CustomCard from "./CustomCard";
 import $ from "jquery";
 import styles from "../styles/FoodList.module.css";
 import { Spinner } from "react-bootstrap";
-// import dotenv from 'dotenv';
-// dotenv.config();
+import { useRouter } from "next/router";
+import useSWR from "swr";
 
 function FoodList(props) {
-  const firstTimeRun = useRef(false);
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  let arrayList = []
+
+  const listOfDishesFetcher = (url) =>
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => data.results.map((record) => record.id)).then(() => setIsLoading(false));
+
+  const listOfDetailedDishesDataFetcher = (urls) =>
+    Promise.all(urls.map((url) => fetch(url))).then((responses) =>
+      Promise.all(responses.map((res) => res.json())).then((records) =>
+        records.map((record) => {
+          const dishInfo = {
+            id: record.id,
+            title: record.title,
+            image: record.image,
+            // price divided by 100 to get actual price
+            pricePerServing: record.pricePerServing,
+            diets: record.diets,
+            summary: record.summary,
+          };
+          return dishInfo;
+        })
+      )
+    ).then(() => setIsLoading(false));
+
   //fetch a list of dishes
-  const fetchData = useCallback(async (cuisineType) => {
-    setIsLoading(true);
-    const data = await $.ajax({
-      url: "https://api.spoonacular.com/recipes/complexSearch",
-      data: {
-        apiKey: process.env.NEXT_PUBLIC_API_KEY,
-        cuisine: cuisineType,
-        number: 10,
-      },
-      dataType: "json",
-    });
-    let dishes = [];
-    for (let i = 0; i < data.results.length; i++) {
-      await fetchOneRecipeInformation(data.results[i].id).then((info) =>
-        dishes.push(info)
-      );
-    }
-    setData(dishes);
-    setIsLoading(false);
-  });
-
-  //fetch one recipe's detail information
-  const fetchOneRecipeInformation = useCallback(async (id) => {
-    const data = await $.ajax({
-      url: `https://api.spoonacular.com/recipes/${id}/information`,
-      data: {
-        apiKey: process.env.NEXT_PUBLIC_API_KEY,
-        includeNutrition: false,
-      },
-      dataType: "json",
-    });
-
-    const dishInfo = {
-      id: data.id,
-      title: data.title,
-      image: data.image,
-      // price divided by 100 to get actual price
-      pricePerServing: data.pricePerServing,
-      diets: data.diets,
-      summary: data.summary,
-    };
-    return dishInfo;
-  });
-  useEffect(() => {
-    if (!firstTimeRun.current) {
-      fetchData(props.cuisine);
-      firstTimeRun.current = true;
-    }
+  const { data: listOfDishesData, error: listOfDishesError } = useSWR(
+    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.NEXT_PUBLIC_API_KEY}&cuisine=${props.cuisine}&number=2`,
+    listOfDishesFetcher
+  );
+  if (listOfDishesData) {
+    arrayList = listOfDishesData.map(
+      (dishID) =>
+        `https://api.spoonacular.com/recipes/${dishID}/information?apiKey=${process.env.NEXT_PUBLIC_API_KEY}`
+    );
+    
+  }
+  console.log(listOfDishesData)
+  const { data: listOfDetailedDishesData, error: listOfDetailedDishesError } =
+  useSWR(arrayList, listOfDetailedDishesDataFetcher, {
+    dependsOn: [listOfDishesData],
   });
 
   const list = (
     <div className={`${styles.list} d-flex flex-wrap justify-content-evenly`}>
       {/* list goes here */}
-      {data.map((dish) => (
+      {listOfDetailedDishesData && listOfDetailedDishesData.map((dish) => (
         <CustomCard
           key={dish.id}
           className="mx-1 my-2"
@@ -74,12 +65,14 @@ function FoodList(props) {
     </div>
   );
 
-  const loadingContent= (<div>
-    <Spinner animation="border" role="status">
-      <span className="visually-hidden">Loading...</span>
-    </Spinner>
-    <p>The menu is loading</p>
-  </div>)
+  const loadingContent = (
+    <div>
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+      <p>The menu is loading</p>
+    </div>
+  );
   return (
     <React.Fragment>
       <div className={`${styles.intro}`}>
