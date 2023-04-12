@@ -50,10 +50,9 @@ function FoodList(props) {
     });
 
   useEffect(() => {
-    if(!(listOfDishesError || listOfDetailedDishesError)){
+    if (!(listOfDishesError || listOfDetailedDishesError)) {
       setIsLoading(false);
-    }
-    else{
+    } else {
       setIsLoading(true);
     }
   }, [listOfDishesError, listOfDetailedDishesError]);
@@ -63,15 +62,13 @@ function FoodList(props) {
   }
 
   const list = (
-    <div className={`${styles.list} d-md-flex flex-wrap justify-content-evenly mt-5`}>
+    <div
+      className={`${styles.list} d-md-flex flex-wrap justify-content-evenly mt-4 mx-1 mx-md-5`}
+    >
       {/* list goes here */}
       {listOfDetailedDishesData &&
         listOfDetailedDishesData.map((dish) => (
-          <DishCard
-            key={dish.id}
-            className="mx-1 my-2"
-            data={dish}
-          ></DishCard>
+          <DishCard key={dish.id} className="mx-1 my-2" data={dish}></DishCard>
         ))}
     </div>
   );
@@ -86,10 +83,6 @@ function FoodList(props) {
   );
   return (
     <React.Fragment>
-      <div className={`${styles.intro}`}>
-        <h2 className="fs-2">{props.foodCategory}</h2>
-        <p className="fs-5">{props.foodCatDesc}</p>
-      </div>
       {!isLoading && list}
       {isLoading && loadingContent}
     </React.Fragment>

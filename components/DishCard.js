@@ -38,7 +38,9 @@ function CustomCard(props) {
     >
       <Card.Img variant="top" src={props.data.image} />
       <Card.Body>
-        <Card.Title className={`fs-4 ${styles.title}`}>{props.data.title}</Card.Title>
+        <Card.Title className={`fs-4 ${styles.title}`}>
+          {props.data.title}
+        </Card.Title>
         <Container
           fluid
           className={`d-md-flex mx-auto mx-md-0 justify-content-between align-items-center`}
@@ -50,7 +52,7 @@ function CustomCard(props) {
             {price}
           </Card.Text>
 
-          <div class="d-flex justify-content-center">
+          <div class="d-flex justify-content-center ms-0 ms-md-3">
             <Button
               className={`${styles.button} mx-auto`}
               onClick={() => addAnItem(props.data)}
