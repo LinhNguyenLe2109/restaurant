@@ -1,8 +1,25 @@
 .cardStyle {
+  position: relative;
   background-color: var(--secondary-color);
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
     rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  min-height: 25rem;
+}
+
+.priceAndAdd{
+  position:absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform:translateX(-50%) ;
+}
+
+.title {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .button {
@@ -20,11 +37,58 @@
   color: var(--forth-color);
 }
 
-.title {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  height: 60%;
+/* for small screens */
+@media only screen and (max-width: 400px) {
+  .cardStyle {
+    width: 80%;
+    min-height: 20rem;
+  }
+  .title {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 576px) {
+  .cardStyle {
+    width: 50%;
+    min-height: 20rem;
+  }
+  .title {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* for medium screens */
+@media only screen and (min-width: 576px) and (max-width: 870px) {
+  .cardStyle {
+    width: 90%;
+  }
+}
+
+/* for medium screens */
+@media only screen and (min-width: 870px) and (max-width: 992px) {
+  .cardStyle {
+    width: 80%;
+  }
+}
+
+/* for large screens */
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  .cardStyle {
+    width: auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .cardStyle {
+    width: 70%;
+  }
 }
