@@ -33,28 +33,31 @@ function CustomCard(props) {
 
   let price = `$${(props.data.pricePerServing / 10).toFixed(2)}`;
   return (
-    <Card className={`col-3 ${props.className} ${styles.cardStyle}`}>
+    <Card
+      className={`col-xxl-2 col-lg-3 col-md-4 col-sm-5 col-8  mx-md-1 mx-auto my-4 my-md-2 ${props.className} ${styles.cardStyle}`}
+    >
       <Card.Img variant="top" src={props.data.image} />
       <Card.Body>
-        <Card.Title className="fs-4">{props.data.title}</Card.Title>
-
-        {/* {data.id && <Card.Text>{parse(data.summary)}</Card.Text>} */}
+        <Card.Title className={`fs-4 ${styles.title}`}>{props.data.title}</Card.Title>
         <Container
           fluid
-          className={`d-flex justify-content-between align-items-center`}
+          className={`d-md-flex mx-auto mx-md-0 justify-content-between align-items-center`}
         >
-          <Button
-            className={styles.button}
-            onClick={() => addAnItem(props.data)}
-          >
-            Add to cart
-          </Button>
           <Card.Text
-            className={`${styles.price} d-inline-block 
-              fs-5 fw-bold fst-italic`}
+            className={`${styles.price} d-block 
+              fs-5 fw-bold fst-italic text-center`}
           >
             {price}
           </Card.Text>
+
+          <div class="d-flex justify-content-center">
+            <Button
+              className={`${styles.button} mx-auto`}
+              onClick={() => addAnItem(props.data)}
+            >
+              Add to cart
+            </Button>
+          </div>
         </Container>
       </Card.Body>
     </Card>

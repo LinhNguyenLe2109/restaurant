@@ -1,17 +1,27 @@
-.cardStyle{
-    background-color: var(--secondary-color);
+.cardStyle {
+  background-color: var(--secondary-color);
 }
 
-.button{
-    background-color: var(--third-color);
-    border-color: var(--forth-color);
+.button {
+  background-color: var(--third-color);
+  border-color: var(--forth-color);
 }
 
-.button:active, .button:hover, .button:focus{
-    background-color: var(--forth-color)!important;
-    
+.button:active,
+.button:hover,
+.button:focus {
+  background-color: var(--forth-color) !important;
 }
 
-.price{
-    color: var(--forth-color);
+.price {
+  color: var(--forth-color);
+}
+
+.title {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 60%;
 }

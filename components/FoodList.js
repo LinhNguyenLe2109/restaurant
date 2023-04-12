@@ -34,7 +34,7 @@ function FoodList(props) {
 
   //fetch a list of dishes
   const { data: listOfDishesData, error: listOfDishesError } = useSWR(
-    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.NEXT_PUBLIC_API_KEY}&cuisine=${props.cuisine}&number=2`,
+    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.NEXT_PUBLIC_API_KEY}&cuisine=${props.cuisine}&number=4`,
     listOfDishesFetcher
   );
 
@@ -63,7 +63,7 @@ function FoodList(props) {
   }
 
   const list = (
-    <div className={`${styles.list} d-flex flex-wrap justify-content-evenly`}>
+    <div className={`${styles.list} d-md-flex flex-wrap justify-content-evenly mt-5`}>
       {/* list goes here */}
       {listOfDetailedDishesData &&
         listOfDetailedDishesData.map((dish) => (
