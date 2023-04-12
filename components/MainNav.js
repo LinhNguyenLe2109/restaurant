@@ -31,11 +31,6 @@ function MainNav(props) {
     setIsExpanded(false);
   };
 
-  // show modal
-  const showCartHandler = () => {
-    setCartIsShown(true);
-  };
-
   let menuTitle = (
     <>
       <FontAwesomeIcon icon={faBowlFood} /> Menu
@@ -108,7 +103,7 @@ function MainNav(props) {
               href="#cart"
               className={`${style.cartButton} btn btn-outline-dark mt-3 mt-lg-0`}
               type="button"
-              onClick={showCartHandler}
+              onClick={() => setCartIsShown(state => !state)}
             >
               <FontAwesomeIcon icon={faCartShopping} className="me-1" />
               View cart <span className={style.totalItem}>{totalItem}</span>

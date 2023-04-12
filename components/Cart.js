@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import classes from "../styles/Cart.module.css";
 import { useAtom } from "jotai";
 import { cartIsShownAtom, orderListAtom } from "@/store";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFaceSmileWink } from "@fortawesome/free-solid-svg-icons";
 // orderList
 const Backdrop = (props) => {
   return <div className={classes.backdrop} onClick={props.onClose}></div>;
@@ -53,11 +55,26 @@ function Cart(props) {
     </div>
   );
 
+  const noOrder = (
+    <div className="text-center">
+      <FontAwesomeIcon
+        className={`${classes.smiley} mb-3`}
+        icon={faFaceSmileWink}
+      />
+      <p className="fs-4">
+        Make sure you{" "}
+        <strong className={`${classes.highlight}`}>add the dishes</strong> you
+        like before checking out
+      </p>
+    </div>
+  );
+
   const cartContent = (
     <React.Fragment>
       <Backdrop onClose={hideCartHandler} />
       <ModalOverlay>
         {orderList.length > 0 && orderListDisplay}
+        {orderList.length == 0 && noOrder}
         <div className={`position-relative w-100 d-flex justify-content-end`}>
           {orderList.length > 0 && (
             <Button
