@@ -1,8 +1,15 @@
 .container {
   background-color: var(--bg-color);
   color: var(--text-color);
+  --swiper-navigation-color: var(--secondary-color);
+  --swiper-pagination-color: var(--secondary-color);
 }
 
-.bulletClass {
-  background-color: white !important;
+
+.heading{
+  color: var(--secondary-color);
+}
+
+.darkenImgBg{
+  background-color: rgba(0,0,0,0.7);
 }

@@ -6,6 +6,14 @@ const nextConfig = {
     config.resolve.alias["@"] = path.join(__dirname, "/");
     return config;
   },
-}
+  async rewrites() {
+    return [
+      {
+        source: "/images/:path*",
+        destination: "/public/images/:path*",
+      },
+    ];
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
