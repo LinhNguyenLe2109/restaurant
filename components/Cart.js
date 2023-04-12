@@ -17,13 +17,10 @@ const ModalOverlay = (props) => {
   );
 };
 
-// const portalElement = document.getElementById("modal");
-// const portalElement = typeof document !== "undefined" ? document.body : null
-
 function Cart(props) {
   const [orderDone, setOrderDone] = useState(false);
   const [orderList, setOrderList] = useAtom(orderListAtom);
-  const [cartIsShown, setCartIsShown] = useAtom(cartIsShownAtom)
+  const [cartIsShown, setCartIsShown] = useAtom(cartIsShownAtom);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -36,28 +33,45 @@ function Cart(props) {
     setCartIsShown(false);
   };
 
+  const orderListDisplay = (
+    <div>
+      {orderList.map((item) => {
+        let price = `$${(item.pricePerServing / 10).toFixed(2)}`;
+        return (
+          <React.Fragment key={item.id}>
+            <h4>{item.title}</h4>
+            <div>
+              <p>
+                Price: {price} <br />
+                Amount: {item.amount}
+              </p>
+            </div>
+            <hr />
+          </React.Fragment>
+        );
+      })}
+    </div>
+  );
+
   const cartContent = (
     <React.Fragment>
       <Backdrop onClose={hideCartHandler} />
       <ModalOverlay>
-        <div onClick={hideCartHandler}>
-          {orderList.map((item) => {
-            let price = `$${(item.pricePerServing / 10).toFixed(2)}`;
-            return (
-              <React.Fragment key={item.id}>
-                <h4>{item.title}</h4>
-                <div>
-                  <p>
-                    Price: {price} <br />
-                    Amount: {item.amount}
-                  </p>
-                </div>
-                <hr />
-              </React.Fragment>
-            );
-          })}
+        {orderList.length > 0 && orderListDisplay}
+        <div className={`position-relative w-100 d-flex justify-content-end`}>
+          {orderList.length > 0 && (
+            <Button
+              className={`${classes.button} ${classes.orderButton}`}
+              onClick={() => setOrderDone((stat) => !stat)}
+            >
+              Order
+            </Button>
+          )}
+          <Button className={`${classes.button}`} onClick={hideCartHandler}>
+            Continue shopping
+          </Button>
         </div>
-        <Button onClick={() => setOrderDone((stat) => !stat)}>Order</Button>
+
         {orderDone && (
           <Alert variant="success">Order finished, thank you :)</Alert>
         )}
@@ -65,9 +79,9 @@ function Cart(props) {
     </React.Fragment>
   );
 
-  return mounted ?  ReactDOM.createPortal(
-    cartContent, document.querySelector("#modal")
-  ) : null;
+  return mounted
+    ? ReactDOM.createPortal(cartContent, document.querySelector("#modal"))
+    : null;
 }
 
 export default Cart;
