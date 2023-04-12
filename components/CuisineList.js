@@ -1,10 +1,10 @@
 import React, { version } from "react";
 import { Container } from "react-bootstrap";
 import styles from "../styles/CuisineList.module.css";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import { Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
+import CategoryCard from "./CategoryCard";
 import Link from "next/link";
 import vn from "../public/images/VN-cat-bg.jpg";
 import kr from "../public/images/KR-cat-bg.jpg";
@@ -15,21 +15,25 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 function CuisineList() {
+  const breakpoints = {
+    640: {
+      slidesPerView: 1,
+      spaceBetween: 20,
+    },
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 30,
+    },
+    1024: {
+      slidesPerView: 3,
+      spaceBetween: 40,
+    },
+  };
   let list = Array(5)
     .fill(1)
     .map((abc, idx) => (
       <SwiperSlide key={idx}>
-        <Card className="bg-dark text-white">
-          <Card.Img
-            src="https://www.ford.ca/cmslibs/content/dam/brand_ford/en_ca/brand/homepage/brand_gallery/2022/ford_racing_crop_960x540.jpg/_jcr_content/renditions/cq5dam.web.768.768.jpeg"
-            alt="Card image"
-          />
-          <Card.ImgOverlay
-            className={`d-flex justify-content-center align-items-center ${styles.darkenImgBg}`}
-          >
-            <Card.Title className={`fs-3`}>Food Category</Card.Title>
-          </Card.ImgOverlay>
-        </Card>
+        <CategoryCard />
       </SwiperSlide>
     ));
   return (
@@ -40,52 +44,23 @@ function CuisineList() {
         </h2>
         <Swiper
           className={`pb-5`}
-          slidesPerView={3}
+          slidesPerView={1}
           spaceBetween={30}
           pagination={{
             clickable: true,
           }}
+          breakpoints={breakpoints}
           navigation={true}
           modules={[Pagination, Navigation]}
         >
           <SwiperSlide>
-            <Card className="bg-dark text-white">
-              <Card.Img
-                src={jp.src}
-                alt="Card image"
-              />
-              <Card.ImgOverlay
-                className={`d-flex justify-content-center align-items-center ${styles.darkenImgBg}`}
-              >
-                <Card.Title className={`fs-3`}>Japanese</Card.Title>
-              </Card.ImgOverlay>
-            </Card>
+            <CategoryCard imgSrc={jp.src} category="Japanese" />
           </SwiperSlide>
           <SwiperSlide>
-            <Card className="bg-dark text-white">
-              <Card.Img
-                src={vn.src}
-                alt="Card image"
-              />
-              <Card.ImgOverlay
-                className={`d-flex justify-content-center align-items-center ${styles.darkenImgBg}`}
-              >
-                <Card.Title className={`fs-3`}>Vietnamese</Card.Title>
-              </Card.ImgOverlay>
-            </Card>
+            <CategoryCard imgSrc={vn.src} category="Vietnamese" />
           </SwiperSlide>
           <SwiperSlide>
-            <Card className="bg-dark text-white">
-              <Card.Img
-                src={kr.src}
-                alt="Card image"
-              />
-              <Card.ImgOverlay
-                className={`d-flex justify-content-center align-items-center ${styles.darkenImgBg}`}
-              >
-                <Card.Title className={`fs-3`}>Korean</Card.Title>
-              </Card.ImgOverlay>
-            </Card>
+            <CategoryCard imgSrc={kr.src} category="Korean" />
           </SwiperSlide>
           {list}
         </Swiper>
