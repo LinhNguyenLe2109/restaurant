@@ -54,13 +54,13 @@ function CuisineList() {
           modules={[Pagination, Navigation]}
         >
           <SwiperSlide>
-            <CategoryCard imgSrc={jp.src} category="Japanese" />
+            <CategoryCard imgSrc={jp.src} category="Japanese" link="Japanese" />
           </SwiperSlide>
           <SwiperSlide>
-            <CategoryCard imgSrc={vn.src} category="Vietnamese" />
+            <CategoryCard imgSrc={vn.src} category="Vietnamese" link="Vietnamese" />
           </SwiperSlide>
           <SwiperSlide>
-            <CategoryCard imgSrc={kr.src} category="Korean" />
+            <CategoryCard imgSrc={kr.src} category="Korean" link="Korean" />
           </SwiperSlide>
           {list}
         </Swiper>

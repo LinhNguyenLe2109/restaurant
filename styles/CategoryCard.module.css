@@ -1,9 +1,11 @@
 .imgBg {
   background-color: rgba(0, 0, 0, 0.7);
+  transition: 0.5s
 }
 
 .imgBg:hover {
     cursor:pointer;
+    background-color: rgba(0, 0, 0, 0.0);
 }
 
 
