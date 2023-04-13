@@ -3,10 +3,10 @@ import DishCard from "./DishCard";
 import styles from "../styles/FoodList.module.css";
 import { Spinner } from "react-bootstrap";
 import useSWR from "swr";
-import Error from "next/error";
+import { useRouter } from "next/router";
 function FoodList(props) {
   const [isLoading, setIsLoading] = useState(true);
-
+  const router = useRouter();
   let arrayList = [];
 
   const listOfDishesFetcher = (url) =>
@@ -58,7 +58,7 @@ function FoodList(props) {
   }, [listOfDishesError, listOfDetailedDishesError]);
 
   if (listOfDishesError || listOfDetailedDishesError) {
-    return <Error statusCode={402} />;
+    router.push("/error/402");
   }
 
   const list = (
