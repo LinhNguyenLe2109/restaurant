@@ -5,7 +5,7 @@ import classes from "../styles/Cart.module.css";
 import { useAtom } from "jotai";
 import { cartIsShownAtom, orderListAtom } from "@/store";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFaceSmileWink } from "@fortawesome/free-solid-svg-icons";
+import { faFaceSmileWink, faPlus } from "@fortawesome/free-solid-svg-icons";
 // orderList
 const Backdrop = (props) => {
   return <div className={classes.backdrop} onClick={props.onClose}></div>;
@@ -35,6 +35,31 @@ function Cart(props) {
     setCartIsShown(false);
   };
 
+  const addAnItem = (itemDetails) => {
+    //todo
+    setOrderList((curArray) => {
+      // create an empty array
+      let newArray = [];
+      let found = 0;
+      if (curArray.length > 0) {
+        for (const dish of curArray) {
+          if (dish.id === itemDetails.id) {
+            // if the dish is found in the order => update the total amount
+            newArray.push({ ...dish, amount: dish.amount + 1 });
+            found = 1;
+          }
+          // or just add into the new array
+          else {
+            newArray.push({ ...dish });
+          }
+        }
+      }
+      return found === 1
+        ? newArray
+        : [...newArray, { ...itemDetails, amount: 1 }];
+    });
+  };
+
   const orderListDisplay = (
     <div>
       {orderList.map((item) => {
@@ -45,7 +70,12 @@ function Cart(props) {
             <div>
               <p>
                 Price: {price} <br />
-                Amount: {item.amount}
+                Amount:{" "}
+                <FontAwesomeIcon
+                  icon={faPlus}
+                  onClick={() => addAnItem(item)}
+                />{" "}
+                {item.amount}
               </p>
             </div>
             <hr />
