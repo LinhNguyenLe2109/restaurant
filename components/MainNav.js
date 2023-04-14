@@ -85,18 +85,6 @@ function MainNav(props) {
                   </NavDropdown.Item>
                 </Link>
               </NavDropdown>
-              <Form onSubmit={(e) => handleSubmit(e)} className="d-flex">
-                <Form.Control
-                  type="search"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search"
-                  name="search"
-                />
-                <Button type="submit" variant="outline-success">
-                  Search
-                </Button>
-              </Form>
             </Nav>
             &nbsp;
             <Button
@@ -108,26 +96,6 @@ function MainNav(props) {
               <FontAwesomeIcon icon={faCartShopping} className="me-1" />
               View cart <span className={style.totalItem}>{totalItem}</span>
             </Button>
-            {/* Do this later */}
-            {/* &nbsp;
-            <Nav>
-              <NavDropdown
-                onClick={() => setIsExpanded(false)}
-                title="User Name"
-                id="basic-nav-dropdown"
-              >
-                <Link legacyBehavior passHref href="/favourites">
-                  <NavDropdown.Item active={router.pathname === "/favourites"}>
-                    Favourites
-                  </NavDropdown.Item>
-                </Link>
-                <Link legacyBehavior passHref href="/history">
-                  <NavDropdown.Item active={router.pathname === "/history"}>
-                    Search History
-                  </NavDropdown.Item>
-                </Link>
-              </NavDropdown>
-            </Nav> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>
