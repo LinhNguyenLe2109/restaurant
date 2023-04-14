@@ -1,23 +1,16 @@
 # NeoFood: Restaurant e-commerce app
-
 This project is create to test my knowledge on Web development
 
 ## Features
 - Allows user to create an order and place their order
-- User can navigate throw the menu to check the dishes based on the cuisine type
+- User can navigate through the menu to check the dishes based on the cuisine type
 - All the food data is fetched from Spoonacular API
-- Make use of useAtom, createPortal, useEffect, useSWR, useForm
+- Make use of useAtom, createPortal, useEffect, useSWR, useRouter
 - The web app is responsive, applicable for multiple screen sizes
-- User can create login/signup (**working on it**)
-- User can keep track of their order (**working on it**)
-
+- Display proper error message when the creator runs out of fetch points :smile:
 
 ## Currently working on:
-Convert react app to next app with more features:
-- login/logout
-- security
-- fetch data from backend server
-- responsive
+The project is finished
 
 ## Technology
 - Next.js
