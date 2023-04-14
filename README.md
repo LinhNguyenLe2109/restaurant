@@ -1,4 +1,4 @@
-# NeoFood: Restaurant e-commerce app
+# [NeoFood](https://neofood.vercel.app/): Restaurant e-commerce app
 This project is create to test my knowledge on Web development
 
 ## Features
