@@ -10,6 +10,7 @@ import {
   faPlus,
   faMinus,
 } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
 // orderList
 const Backdrop = (props) => {
   return <div className={classes.backdrop} onClick={props.onClose}></div>;
@@ -24,10 +25,11 @@ const ModalOverlay = (props) => {
 };
 
 function Cart(props) {
-  const [orderDone, setOrderDone] = useState(false);
   const [orderList, setOrderList] = useAtom(orderListAtom);
   const [cartIsShown, setCartIsShown] = useAtom(cartIsShownAtom);
   const [mounted, setMounted] = useState(false);
+
+  const router = useRouter()
 
   useEffect(() => {
     setMounted(true);
@@ -92,7 +94,7 @@ function Cart(props) {
           <React.Fragment key={item.id}>
             <h4>{item.title}</h4>
             <div>
-              <p>
+              <p className="fs-5">
                 Price: {price} <br />
                 Amount:{" "}
                 <FontAwesomeIcon
@@ -100,7 +102,7 @@ function Cart(props) {
                   icon={faPlus}
                   onClick={() => addAnItem(item)}
                 />{" "}
-                {item.amount}
+                <span className="fw-bold">{item.amount}</span>
                 <FontAwesomeIcon
                   className={`${classes.modifyButton}`}
                   icon={faMinus}
@@ -138,8 +140,8 @@ function Cart(props) {
         <div className={`position-relative w-100 d-flex justify-content-end`}>
           {orderList.length > 0 && (
             <Button
-              className={`${classes.button} ${classes.orderButton}`}
-              onClick={() => setOrderDone((stat) => !stat)}
+              className={`${classes.button}`}
+              onClick={() => router.push("/payment")}
             >
               Order
             </Button>
@@ -148,10 +150,6 @@ function Cart(props) {
             Continue shopping
           </Button>
         </div>
-
-        {orderDone && (
-          <Alert variant="success">Order finished, thank you :)</Alert>
-        )}
       </ModalOverlay>
     </React.Fragment>
   );

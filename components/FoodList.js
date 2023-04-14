@@ -9,6 +9,7 @@ function FoodList(props) {
   const router = useRouter();
   let arrayList = [];
 
+  // todo
   const listOfDishesFetcher = (url) =>
     fetch(url)
       .then((res) => res.json())
@@ -34,7 +35,7 @@ function FoodList(props) {
 
   //fetch a list of dishes
   const { data: listOfDishesData, error: listOfDishesError } = useSWR(
-    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.NEXT_PUBLIC_API_KEY}&cuisine=${props.cuisine}&number=4`,
+    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.NEXT_PUBLIC_API_KEY}&cuisine=${props.cuisine}&number=10`,
     listOfDishesFetcher
   );
 

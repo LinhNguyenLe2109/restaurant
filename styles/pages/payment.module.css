@@ -1,0 +1,77 @@
+.button {
+  background-color: var(--secondary-color);
+  width: 100%;
+  color: black;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  margin: 0 0.3rem;
+}
+
+.button:hover {
+  background-color: var(--third-color);
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.mainContainer {
+  background-color: var(--fifth-color);
+  color: white;
+  padding: 2rem 4rem;
+  margin-top: 2rem;
+  border-radius: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.mainContainer:not(h2) {
+  font-size: 1.2rem;
+}
+
+.priceCol {
+  text-align: end;
+  margin-right: 1.5rem;
+}
+
+.total {
+  font-size: 1.5rem;
+}
+
+.goBackButton{
+    width: 20rem;
+    margin: 1rem auto;
+}
+
+@media only screen and (max-width: 650px) {
+    .mainContainer {
+      max-width: 95%;
+      padding: 2rem 2rem;
+    }
+  }
+
+/* for tiny screens */
+@media only screen and (min-width: 650px) and (max-width: 900px) {
+  .mainContainer {
+    max-width: 75%;
+  }
+}
+
+/* for medium screens */
+@media only screen and (min-width: 900px) and (max-width: 992px) {
+  .mainContainer {
+    max-width: 70%;
+  }
+}
+
+/* for large screens */
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  .mainContainer {
+    max-width: 65%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .mainContainer {
+    max-width: 50%;
+  }
+}
