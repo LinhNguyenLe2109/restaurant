@@ -2,9 +2,14 @@ import "@/styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from "@/components/Layout";
 import { SWRConfig } from "swr";
+import { useState } from "react";
 import Cart from "@/components/Cart";
+import { useAtom } from "jotai";
+import { cartIsShownAtom } from "@/store";
 
 export default function App({ Component, pageProps }) {
+  const [cartIsShown, setCartIsShown] = useAtom(cartIsShownAtom);
+
   return (
     <Layout>
       <SWRConfig
@@ -26,7 +31,9 @@ export default function App({ Component, pageProps }) {
           },
         }}
       >
-        {cartIsShown && <Cart />}
+        {cartIsShown && (
+          <Cart />
+        )}
         <Component {...pageProps} />
       </SWRConfig>
     </Layout>
