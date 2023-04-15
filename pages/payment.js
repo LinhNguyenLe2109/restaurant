@@ -17,7 +17,7 @@ function Payment() {
   const [finish, setFinish] = useState(false);
   const router = useRouter();
   let subtotal = parseFloat(0);
-  for(const item of orderList ){
+  for (const item of orderList) {
     let price = (item.pricePerServing / 10).toFixed(2);
     subtotal += parseFloat(price);
   }
@@ -82,7 +82,12 @@ function Payment() {
         <Container className="mt-4">
           <Row>
             <Col xs={12} sm={6}>
-              <Button className={`${classes.button}`}>Continue Shopping</Button>
+              <Button
+                className={`${classes.button}`}
+                onClick={() => router.push("/")}
+              >
+                Continue Shopping
+              </Button>
             </Col>
             <Col xs={12} sm={6} className="mt-sm-0 mt-2 ">
               <Button
