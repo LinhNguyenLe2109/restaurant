@@ -20,7 +20,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { orderListAtom, cartIsShownAtom } from "@/store";
 
-function MainNav(props) {
+// The following import prevents a Font Awesome icon server-side rendering bug,
+// where the icons flash from a very large icon down to a properly sized one:
+import "@fortawesome/fontawesome-svg-core/styles.css";
+// Prevent fontawesome from adding its CSS since we did it manually above:
+import { config } from "@fortawesome/fontawesome-svg-core";
+
+function MainNav() {
+  config.autoAddCss = false;
   const [isExpanded, setIsExpanded] = useState(false);
   const [orderList, setOrderList] = useAtom(orderListAtom);
   const [cartIsShown, setCartIsShown] = useAtom(cartIsShownAtom);
