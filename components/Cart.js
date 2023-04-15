@@ -29,7 +29,7 @@ function Cart(props) {
   const [cartIsShown, setCartIsShown] = useAtom(cartIsShownAtom);
   const [mounted, setMounted] = useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -141,7 +141,10 @@ function Cart(props) {
           {orderList.length > 0 && (
             <Button
               className={`${classes.button}`}
-              onClick={() => router.push("/payment")}
+              onClick={() => {
+                hideCartHandler();
+                router.push("/payment");
+              }}
             >
               Order
             </Button>

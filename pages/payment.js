@@ -16,10 +16,12 @@ function Payment() {
   const [orderList, setOrderList] = useAtom(orderListAtom);
   const [finish, setFinish] = useState(false);
   const router = useRouter();
-  let subtotal = orderList.reduce((item, currentPrice) => {
+  let subtotal = parseFloat(0);
+  for(const item of orderList ){
     let price = (item.pricePerServing / 10).toFixed(2);
-    return currentPrice + price;
-  }, 0);
+    subtotal += parseFloat(price);
+  }
+  console.log(subtotal);
   let deliveryFee = (subtotal / 50).toFixed(2);
   let tax = ((subtotal * 13) / 100).toFixed(2);
   let total = parseFloat(
@@ -124,7 +126,7 @@ function Payment() {
       <Container className="text-center">
         <Button
           className={`${classes.button} ${classes.goBackButton}`}
-          onClick={() => router.push("/jsconfig.json")}
+          onClick={() => router.push("/")}
         >
           Go back to Home
         </Button>
