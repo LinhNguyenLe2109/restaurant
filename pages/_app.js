@@ -2,14 +2,15 @@ import "@/styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from "@/components/Layout";
 import { SWRConfig } from "swr";
-import { useState } from "react";
 import Cart from "@/components/Cart";
-import { useAtom } from "jotai";
-import { cartIsShownAtom } from "@/store";
+// The following import prevents a Font Awesome icon server-side rendering bug,
+// where the icons flash from a very large icon down to a properly sized one:
+import "@fortawesome/fontawesome-svg-core/styles.css";
+// Prevent fontawesome from adding its CSS since we did it manually above:
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false; /* eslint-disable import/first */
 
 export default function App({ Component, pageProps }) {
-  const [cartIsShown, setCartIsShown] = useAtom(cartIsShownAtom);
-
   return (
     <Layout>
       <SWRConfig
@@ -31,9 +32,7 @@ export default function App({ Component, pageProps }) {
           },
         }}
       >
-        {cartIsShown && (
-          <Cart />
-        )}
+        {cartIsShown && <Cart />}
         <Component {...pageProps} />
       </SWRConfig>
     </Layout>

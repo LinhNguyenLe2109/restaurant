@@ -65,22 +65,25 @@ function MainNav(props) {
                   Home
                 </Nav.Link>
               </Link>
-              <NavDropdown
-                title={menuTitle}
-                id="basic-nav-dropdown"
-              >
+              <NavDropdown title={menuTitle} id="basic-nav-dropdown">
                 <Link legacyBehavior passHref href="/category/Japanese">
-                  <NavDropdown.Item active={router.pathname === "//category/Japanese"}>
+                  <NavDropdown.Item
+                    active={router.pathname === "//category/Japanese"}
+                  >
                     Japanese Food
                   </NavDropdown.Item>
                 </Link>
                 <Link legacyBehavior passHref href="/category/Vietnamese">
-                  <NavDropdown.Item active={router.pathname === "/category/Vietnamese"}>
+                  <NavDropdown.Item
+                    active={router.pathname === "/category/Vietnamese"}
+                  >
                     Vietnamese Food
                   </NavDropdown.Item>
                 </Link>
                 <Link legacyBehavior passHref href="/category/Korean">
-                  <NavDropdown.Item active={router.pathname === "/category/Korean"}>
+                  <NavDropdown.Item
+                    active={router.pathname === "/category/Korean"}
+                  >
                     Korean Food
                   </NavDropdown.Item>
                 </Link>
@@ -91,7 +94,7 @@ function MainNav(props) {
               href="#cart"
               className={`${style.cartButton} btn btn-outline-dark mt-3 mt-lg-0`}
               type="button"
-              onClick={() => setCartIsShown(state => !state)}
+              onClick={() => setCartIsShown((state) => !state)}
             >
               <FontAwesomeIcon icon={faCartShopping} className="me-1" />
               View cart <span className={style.totalItem}>{totalItem}</span>
