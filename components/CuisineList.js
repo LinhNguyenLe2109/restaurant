@@ -29,13 +29,6 @@ function CuisineList() {
       spaceBetween: 40,
     },
   };
-  let list = Array(5)
-    .fill(1)
-    .map((abc, idx) => (
-      <SwiperSlide key={idx}>
-        <CategoryCard />
-      </SwiperSlide>
-    ));
   return (
     <React.Fragment>
       <Container className={`${styles.container} mb-5`} fluid>
@@ -62,7 +55,6 @@ function CuisineList() {
           <SwiperSlide>
             <CategoryCard imgSrc={kr.src} category="Korean" link="Korean" />
           </SwiperSlide>
-          {list}
         </Swiper>
       </Container>
     </React.Fragment>
